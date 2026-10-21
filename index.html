@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Мой календарь">
 <link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="assets/icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
 <title>Мой календарь прививок</title>
 <style>
 :root{--ink:#24352f;--muted:#718078;--green:#447b68;--mint:#e4f1e9;--cream:#fbf8f1;--peach:#f7e5d9;--line:#e6ebe6;--white:#fff;--shadow:0 10px 28px #2b473012}
@@ -29,13 +29,13 @@ nav{position:fixed;bottom:0;left:0;right:0;background:#fffffff0;backdrop-filter:
 <body>
 <div class="wrap">
 <header><div class="brand">ЗАБОТА О ЗДОРОВЬЕ<span>Мой календарь прививок</span></div><div class="avatar">🧸</div></header>
-<section class="hero"><div class="hero-copy"><div class="eyebrow">Маленькие шаги — большая забота</div><h1>Все прививки<br>под контролем</h1><p>История, планы и важные даты — в одном месте.</p></div><img src="assets/doctor-family.png" alt="Мама, ребёнок и врач на приёме"></section>
+<section class="hero"><div class="hero-copy"><div class="eyebrow">Маленькие шаги — большая забота</div><h1>Все прививки<br>под контролем</h1><p>История, планы и важные даты — в одном месте.</p></div><img src="doctor-family.png" alt="Мама, ребёнок и врач на приёме"></section>
 
 <section id="homeView" class="view active">
 <div class="section-head"><h2>Обзор</h2><span class="small" id="todayLabel"></span></div>
 <div class="panel">
 <div class="profile-row">
-<img id="profilePhoto" class="profile-photo" src="assets/icon-192.png" alt="Фото ребёнка">
+<img id="profilePhoto" class="profile-photo" src="icon-192.png" alt="Фото ребёнка">
 <div class="photo-actions"><strong id="profileDisplayName">Мой малыш</strong><span class="small" id="childAge">Добавь дату рождения</span><button class="btn secondary" type="button" onclick="document.getElementById('photoFile').click()">📷 Выбрать фото</button><button class="btn ghost" type="button" onclick="removePhoto()">Убрать фото</button><input id="photoFile" type="file" accept="image/*" style="display:none" onchange="loadPhoto(event)"></div>
 </div>
 <div class="field"><label>Имя ребёнка</label><input id="childName" placeholder="Например, Миша" oninput="updateProfilePreview()"></div>
