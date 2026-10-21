@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f6f8f5">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Мой календарь">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="assets/icon-192.png">
+<title>Мой календарь прививок</title>
+<style>
+:root{--ink:#24352f;--muted:#718078;--green:#447b68;--mint:#e4f1e9;--cream:#fbf8f1;--peach:#f7e5d9;--line:#e6ebe6;--white:#fff;--shadow:0 10px 28px #2b473012}
+*{box-sizing:border-box}body{margin:0;background:#f6f8f5;color:var(--ink);font:16px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding-bottom:94px}
+button,input,select,textarea{font:inherit}button{cursor:pointer}.wrap{max-width:760px;margin:auto;padding:0 16px}
+header{padding:22px 0 12px;display:flex;justify-content:space-between;align-items:center}.brand{font-size:14px;color:var(--green);font-weight:800;letter-spacing:.04em}.brand span{display:block;color:var(--ink);font-size:23px;letter-spacing:-.03em}.avatar{width:44px;height:44px;border-radius:16px;background:var(--mint);display:grid;place-items:center;font-size:23px}
+.hero{background:var(--cream);border-radius:28px;overflow:hidden;box-shadow:var(--shadow);display:grid;grid-template-columns:1.05fr .95fr;min-height:190px;margin:8px 0 20px}.hero-copy{padding:22px 0 22px 20px;align-self:center}.eyebrow{color:var(--green);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em}.hero h1{font-size:25px;line-height:1.12;letter-spacing:-.04em;margin:8px 0}.hero p{font-size:13px;color:var(--muted);margin:0}.hero img{width:100%;height:100%;object-fit:cover;object-position:center;min-height:190px}
+.section-head{display:flex;justify-content:space-between;align-items:center;margin:22px 2px 12px}.section-head h2{font-size:19px;margin:0;letter-spacing:-.03em}.small{font-size:12px;color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px 12px;box-shadow:0 4px 14px #2b473008}.stat strong{font-size:24px;display:block;letter-spacing:-.04em}.stat span{font-size:12px;color:var(--muted)}
+.panel{background:#fff;border:1px solid var(--line);border-radius:22px;padding:17px;box-shadow:var(--shadow);margin-bottom:14px}.field{display:flex;flex-direction:column;gap:6px;margin-bottom:13px}.field label{font-size:12px;color:var(--muted);font-weight:700}.field input,.field select,.field textarea{width:100%;border:1px solid #dce5dd;border-radius:13px;padding:12px;background:#fcfdfb;color:var(--ink);outline-color:var(--green)}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.btn{border:0;border-radius:14px;background:var(--green);color:white;padding:12px 16px;font-weight:750}.btn.secondary{background:var(--mint);color:var(--green)}.btn.ghost{background:#f4f6f3;color:var(--ink);border:1px solid var(--line)}.btn.full{width:100%}.chips{display:flex;gap:8px;flex-wrap:wrap}.chip{border:1px solid var(--line);background:white;padding:8px 12px;border-radius:999px;font-size:13px;color:var(--muted)}.chip.active{background:var(--mint);color:var(--green);border-color:#cce2d3}
+.vaccine{display:flex;gap:12px;align-items:flex-start;padding:13px 0;border-bottom:1px solid var(--line)}.vaccine:last-child{border-bottom:0}.vicon{width:43px;height:43px;border-radius:15px;background:var(--mint);display:grid;place-items:center;font-size:20px;flex-shrink:0}.vmain{flex:1;min-width:0}.vmain strong{display:block;font-size:14px}.vmain small{display:block;color:var(--muted);margin-top:3px}.pill{font-size:10px;font-weight:800;background:#f1f4ef;color:#627268;border-radius:999px;padding:5px 8px;white-space:nowrap}.pill.done{background:#e3f2e7;color:#34714d}.vactions{display:flex;gap:6px;margin-top:8px}.vactions button{border:1px solid var(--line);border-radius:10px;padding:6px 9px;background:white;color:var(--green);font-size:12px}
+.empty{text-align:center;color:var(--muted);padding:25px 10px}.notice{font-size:12px;line-height:1.5;color:#6d776f;background:#f5f4ed;padding:12px;border-radius:14px;margin-top:12px}
+nav{position:fixed;bottom:0;left:0;right:0;background:#fffffff0;backdrop-filter:blur(18px);border-top:1px solid var(--line);padding:9px 10px calc(9px + env(safe-area-inset-bottom));display:flex;justify-content:center;z-index:5}.navinner{display:flex;max-width:600px;width:100%;justify-content:space-around}.navbtn{border:0;background:transparent;color:#829087;font-size:11px;display:flex;align-items:center;flex-direction:column;gap:3px;padding:5px 12px}.navbtn b{font-size:20px;font-weight:500}.navbtn.active{color:var(--green);font-weight:800}
+.view{display:none}.view.active{display:block}.profile-row{display:flex;align-items:center;gap:14px;margin-bottom:15px}.profile-photo{width:82px;height:82px;border-radius:24px;object-fit:cover;background:#e4f1e9;border:2px solid #e4f1e9}.profile-placeholder{width:82px;height:82px;border-radius:24px;background:#e4f1e9;display:grid;place-items:center;font-size:32px;flex-shrink:0}.photo-actions{display:flex;flex-direction:column;gap:7px}.topline{display:flex;align-items:center;justify-content:space-between;gap:10px}.topline h2{margin:0;font-size:21px}.danger{color:#a34e45!important}
+@media(max-width:440px){.hero{grid-template-columns:1fr .8fr}.hero-copy{padding-left:16px}.hero h1{font-size:22px}.hero p{font-size:12px}.stats{gap:7px}.stat{padding:12px 9px}.stat strong{font-size:21px}.grid2{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><div class="brand">ЗАБОТА О ЗДОРОВЬЕ<span>Мой календарь прививок</span></div><div class="avatar">🧸</div></header>
+<section class="hero"><div class="hero-copy"><div class="eyebrow">Маленькие шаги — большая забота</div><h1>Все прививки<br>под контролем</h1><p>История, планы и важные даты — в одном месте.</p></div><img src="assets/doctor-family.png" alt="Мама, ребёнок и врач на приёме"></section>
+
+<section id="homeView" class="view active">
+<div class="section-head"><h2>Обзор</h2><span class="small" id="todayLabel"></span></div>
+<div class="panel">
+<div class="profile-row">
+<img id="profilePhoto" class="profile-photo" src="assets/icon-192.png" alt="Фото ребёнка">
+<div class="photo-actions"><strong id="profileDisplayName">Мой малыш</strong><span class="small" id="childAge">Добавь дату рождения</span><button class="btn secondary" type="button" onclick="document.getElementById('photoFile').click()">📷 Выбрать фото</button><button class="btn ghost" type="button" onclick="removePhoto()">Убрать фото</button><input id="photoFile" type="file" accept="image/*" style="display:none" onchange="loadPhoto(event)"></div>
+</div>
+<div class="field"><label>Имя ребёнка</label><input id="childName" placeholder="Например, Миша" oninput="updateProfilePreview()"></div>
+<div class="field"><label>Дата рождения</label><input id="birthDate" type="date" onchange="updateProfilePreview()"></div>
+<button class="btn full" onclick="saveProfile()">Сохранить профиль</button>
+</div>
+<div class="stats"><div class="stat"><strong id="countDone">0</strong><span>Сделано</span></div><div class="stat"><strong id="countPlanned">0</strong><span>Запланировано</span></div><div class="stat"><strong id="countOverdue">0</strong><span>Нужно проверить</span></div></div>
+<div class="section-head"><h2>Ближайшие события</h2><button class="btn secondary" onclick="showView('add')">＋ Добавить</button></div>
+<div class="panel" id="upcomingList"></div>
+<div class="notice">Сроки в приложении — ориентир для планирования, а не медицинское назначение. Индивидуальную схему и догоняющую вакцинацию согласуйте с педиатром.</div>
+</section>
+
+<section id="addView" class="view">
+<div class="section-head"><h2>Добавить прививку</h2></div>
+<div class="panel">
+<div class="field"><label>Категория</label><div class="chips"><button class="chip active" id="mandatoryChip" onclick="setCategory('mandatory')">Национальный календарь</button><button class="chip" id="extraChip" onclick="setCategory('extra')">Дополнительные</button><button class="chip" id="customChip" onclick="setCategory('custom')">Своя запись</button></div></div>
+<div class="field" id="vaccineSelectWrap"><label>Название прививки</label><select id="vaccineName"></select></div>
+<div class="field" id="customNameWrap" style="display:none"><label>Название прививки / вакцины</label><input id="customName" placeholder="Введите название"></div>
+<div class="grid2"><div class="field"><label>Дата</label><input id="vaccineDate" type="date"></div><div class="field"><label>Статус</label><select id="vaccineStatus"><option value="planned">Запланирована</option><option value="done">Сделана</option></select></div></div>
+<div class="grid2"><div class="field"><label>Доза / этап</label><input id="vaccineDose" placeholder="Например, 1-я доза"></div><div class="field"><label>Напомнить за</label><select id="remindDays"><option value="0">В день события</option><option value="1">За 1 день</option><option value="3" selected>За 3 дня</option><option value="7">За неделю</option></select></div></div>
+<div class="field"><label>Заметка (необязательно)</label><textarea id="vaccineNote" rows="2" placeholder="Клиника, серия вакцины и другое"></textarea></div>
+<button class="btn full" onclick="addVaccine()">Сохранить прививку</button>
+<div class="notice">Для записей можно выбрать дату вручную. Приложение не подбирает медицинскую схему автоматически.</div>
+</div>
+</section>
+
+<section id="calendarView" class="view">
+<div class="section-head"><h2>Календарь прививок</h2></div>
+<div class="panel"><div class="chips"><button class="chip active" id="filterAll" onclick="setFilter('all')">Все</button><button class="chip" id="filterPlanned" onclick="setFilter('planned')">План</button><button class="chip" id="filterDone" onclick="setFilter('done')">Сделанные</button></div><div id="allVaccines"></div></div>
+<div class="panel"><h3 style="margin:0 0 8px">Google Calendar</h3><p class="small">Экспортируй выбранные запланированные прививки в файл календаря (.ics), затем открой его на iPhone и добавь события в календарь. Автоматической двусторонней синхронизации в этой версии нет.</p><button class="btn full" onclick="exportCalendar()">Экспортировать план в календарь</button></div>
+</section>
+
+
+<section id="healthView" class="view">
+<div class="section-head"><h2>Самочувствие</h2></div>
+<div class="panel">
+<h3 style="margin-top:0">Запись в дневник</h3>
+<div class="grid2"><div class="field"><label>Дата</label><input id="healthDate" type="date"></div><div class="field"><label>Температура, °C</label><input id="healthTemp" type="number" min="34" max="43" step="0.1" placeholder="Например, 37.2"></div></div>
+<div class="field"><label>Самочувствие / симптомы</label><select id="healthSymptom"><option>Самочувствие обычное</option><option>Болезненность в месте укола</option><option>Покраснение или припухлость</option><option>Повышенная температура</option><option>Капризность / сонливость</option><option>Другое — указать в заметке</option></select></div>
+<div class="field"><label>Комментарий</label><textarea id="healthNote" rows="2" placeholder="Когда началось, как менялось состояние, рекомендации врача"></textarea></div>
+<button class="btn full" onclick="addHealth()">Сохранить наблюдение</button>
+<div class="notice">Дневник помогает фиксировать наблюдения и обсуждать их с врачом, но не ставит диагноз. При тяжёлой реакции или затруднении дыхания нужна срочная медицинская помощь.</div>
+</div>
+<div class="panel"><h3 style="margin-top:0">История наблюдений</h3><div id="healthList"></div></div>
+</section>
+<section id="docsView" class="view">
+<div class="section-head"><h2>История и документы</h2></div>
+<div class="panel">
+<h3 style="margin-top:0">Медицинский отчёт</h3>
+<p class="small">Открой системное меню печати и выбери «Сохранить в PDF», чтобы сохранить отчёт или распечатать его.</p>
+<button class="btn full" onclick="printReport()">Подготовить PDF-отчёт</button>
+</div>
+<div class="panel">
+<h3 style="margin-top:0">Фото документов</h3>
+<div class="field"><label>Прививка</label><select id="docRecord"></select></div>
+<div class="field"><label>Фото сертификата / записи</label><input id="docFile" type="file" accept="image/*,.pdf"></div>
+<button class="btn full" onclick="saveDocument()">Прикрепить документ</button>
+<div id="documentsList"></div>
+</div>
+</section>
+<section id="referenceView" class="view">
+<div class="section-head"><h2>Справочник вакцин</h2></div>
+<div class="panel">
+<div class="field"><label>Поиск по справочнику</label><input id="refSearch" placeholder="Например, грипп или коклюш" oninput="renderReference()"></div>
+<div id="referenceList"></div>
+<div class="notice">Справочник носит ознакомительный характер. Наличие вакцины, возрастные ограничения, противопоказания и схему введения проверяйте по актуальной инструкции и вместе с врачом.</div>
+</div>
+</section>
+<section id="childrenView" class="view">
+<div class="section-head"><h2>Профили детей</h2></div>
+<div class="panel">
+<div class="field"><label>Выбрать профиль</label><select id="childPicker" onchange="switchChild(this.value)"></select></div>
+<div class="field"><label>Добавить ребёнка</label><input id="newChildName" placeholder="Имя ребёнка"></div>
+<div class="field"><label>Дата рождения</label><input id="newChildBirth" type="date"></div>
+<button class="btn full" onclick="addChild()">＋ Добавить профиль</button>
+<div class="notice">У каждого ребёнка свой календарь и дневник. Данные хранятся локально на этом устройстве.</div>
+</div>
+</section>
+<section id="settingsView" class="view">
+<div class="section-head"><h2>Настройки и данные</h2></div>
+<div class="panel"><h3 style="margin-top:0">Напоминания</h3><p class="small">Можно разрешить уведомления браузера. iOS не гарантирует точные фоновые уведомления для обычной веб-страницы; для надёжных push-уведомлений потребуется серверная настройка.</p><button class="btn full" onclick="enableNotifications()">Разрешить уведомления</button><p id="notifyStatus" class="small"></p></div>
+<div class="panel"><h3 style="margin-top:0">Резервная копия</h3><p class="small">Сохрани файл с записями, чтобы перенести данные или восстановить их позже.</p><div class="grid2"><button class="btn secondary" onclick="backupData()">Скачать копию</button><button class="btn ghost" onclick="document.getElementById('restoreFile').click()">Восстановить</button></div><input id="restoreFile" type="file" accept="application/json" style="display:none" onchange="restoreData(event)"><div class="notice">Данные хранятся в локальном хранилище браузера на этом устройстве. Очистка данных сайта может удалить записи — регулярно делай резервную копию.</div></div>
+<div class="panel"><h3 style="margin-top:0">Другие возможности</h3><div class="grid2"><button class="btn secondary" onclick="showView('docs')">История и PDF</button><button class="btn secondary" onclick="showView('reference')">Справочник вакцин</button><button class="btn secondary" onclick="showView('children')">Профили детей</button><button class="btn secondary" onclick="showView('health')">Дневник самочувствия</button></div></div>
+<div class="panel"><h3 style="margin-top:0">Защита приложения</h3><div class="field"><label>Локальный PIN-код (не является шифрованием)</label><input id="appPin" inputmode="numeric" maxlength="8" placeholder="Задай PIN-код"></div><button class="btn secondary full" onclick="savePin()">Сохранить PIN-настройку</button><p class="small" id="pinStatus"></p><div class="notice">PIN в этой версии — только локальная блокировка интерфейса, не полноценная защита медицинских данных. Не используй его как единственный способ защиты.</div></div>
+<div class="panel"><h3 style="margin-top:0">О календаре</h3><p class="small">Перечень обязательных прививок ориентирован на национальный календарь РФ (приказ Минздрава № 1122н с изменениями). Дополнительные прививки не являются обязательной частью национального календаря для всех детей; показания и сроки обсуди с врачом.</p><a href="https://minzdrav.gov.ru/opendata/7707778246-natskalendarprofilakprivivok2015/visual/" target="_blank" rel="noopener">Официальный ресурс Минздрава РФ ↗</a></div>
+</section>
+</div>
+<nav><div class="navinner"><button class="navbtn active" data-view="home" onclick="showView('home')"><b>⌂</b>Главная</button><button class="navbtn" data-view="add" onclick="showView('add')"><b>＋</b>Добавить</button><button class="navbtn" data-view="calendar" onclick="showView('calendar')"><b>▦</b>Прививки</button><button class="navbtn" data-view="health" onclick="showView('health')"><b>♡</b>Самочувствие</button><button class="navbtn" data-view="settings" onclick="showView('settings')"><b>⚙</b>Ещё</button></div></nav>
+<script>
+const mandatory=[
+["Гепатит B — 1-я вакцинация","Первые 24 часа жизни"],["Туберкулёз (БЦЖ)","3–7-й день жизни"],["Гепатит B — 2-я вакцинация","1 месяц"],["Пневмококковая инфекция — 1-я вакцинация","2 месяца"],["Гепатит B — 3-я вакцинация","2 месяца для групп риска"],["Дифтерия, коклюш, столбняк — 1-я вакцинация","3 месяца"],["Полиомиелит — 1-я вакцинация","3 месяца"],["Гемофильная инфекция — 1-я вакцинация","3 месяца для групп риска"],["Дифтерия, коклюш, столбняк — 2-я вакцинация","4,5 месяца"],["Полиомиелит — 2-я вакцинация","4,5 месяца"],["Гемофильная инфекция — 2-я вакцинация","4,5 месяца для групп риска"],["Пневмококковая инфекция — 2-я вакцинация","4,5 месяца"],["Дифтерия, коклюш, столбняк — 3-я вакцинация","6 месяцев"],["Полиомиелит — 3-я вакцинация","6 месяцев"],["Гепатит B — 3-я вакцинация","6 месяцев"],["Гемофильная инфекция — 3-я вакцинация","6 месяцев для групп риска"],["Корь, краснуха, эпидемический паротит","12 месяцев"],["Пневмококковая инфекция — ревакцинация","15 месяцев"],["Дифтерия, коклюш, столбняк — ревакцинация","18 месяцев"],["Полиомиелит — ревакцинация","18 месяцев"],["Гемофильная инфекция — ревакцинация","18 месяцев для групп риска"],["Полиомиелит — ревакцинация","20 месяцев"],["Дифтерия, столбняк — ревакцинация","6–7 лет"],["Туберкулёз — ревакцинация (по показаниям)","6–7 лет"],["Полиомиелит — ревакцинация","6–7 лет"],["Корь, краснуха, эпидемический паротит — ревакцинация","6 лет"],["Дифтерия, столбняк — ревакцинация","14 лет"]
+];
+const extra=[
+["Ротавирусная инфекция","Сроки зависят от вакцины и возраста начала"],["Менингококковая инфекция","По возрасту и показаниям"],["Ветряная оспа","По возрасту и показаниям"],["Гепатит A","По возрасту и показаниям"],["Клещевой энцефалит","При риске заражения / поездках"],["Грипп","Ежегодно по сезону"],["Вирус папилломы человека (ВПЧ)","По возрасту и доступной вакцине"],["COVID-19","По актуальным рекомендациям и показаниям"]
+];
+let category="mandatory", filter="all";
+let data=JSON.parse(localStorage.getItem("vaccinationApp")||'{"profile":{"name":"","birth":"","photo":""},"records":[],"children":[],"activeChild":"main","health":[],"documents":[],"pin":""}');
+if(!data.profile) data.profile={name:"",birth:"",photo:""};
+if(typeof data.profile.photo!=="string") data.profile.photo="";
+if(!Array.isArray(data.children)) data.children=[];
+if(!Array.isArray(data.health)) data.health=[];
+if(!Array.isArray(data.documents)) data.documents=[];
+if(!data.activeChild) data.activeChild="main";
+const $=id=>document.getElementById(id);
+function persist(){localStorage.setItem("vaccinationApp",JSON.stringify(data));render();renderExtras()}
+function saveProfile(){data.profile={name:$("childName").value.trim(),birth:$("birthDate").value,photo:data.profile.photo||""};persist();alert("Профиль сохранён на этом устройстве.")}
+function updateProfilePreview(){const name=$("childName").value.trim();$("profileDisplayName").textContent=name||"Мой малыш";$("childAge").textContent=ageLabel($("birthDate").value)}
+function ageLabel(birth){if(!birth)return "Добавь дату рождения";const b=new Date(birth+"T12:00:00"),n=new Date();if(b>n)return "Проверь дату рождения";let months=(n.getFullYear()-b.getFullYear())*12+n.getMonth()-b.getMonth();if(n.getDate()<b.getDate())months--;if(months<0)return "Проверь дату рождения";if(months<24)return months+" мес.";let years=Math.floor(months/12),rest=months%12;return years+" г. "+(rest?rest+" мес.":"")}
+function loadPhoto(event){const file=event.target.files&&event.target.files[0];if(!file)return;if(!file.type.startsWith("image/")){alert("Выбери изображение.");return}if(file.size>5*1024*1024){alert("Фото должно быть не больше 5 МБ.");return}const reader=new FileReader();reader.onload=()=>{data.profile.photo=reader.result;$("profilePhoto").src=reader.result;persist()};reader.readAsDataURL(file)}
+function removePhoto(){data.profile.photo="";$("profilePhoto").src="assets/icon-192.png";persist()}
+function setCategory(c){category=c;["mandatory","extra","custom"].forEach(x=>$(x+"Chip").classList.toggle("active",x===c));$("vaccineSelectWrap").style.display=c==="custom"?"none":"block";$("customNameWrap").style.display=c==="custom"?"block":"none";fillOptions()}
+function fillOptions(){let list=category==="extra"?extra:mandatory;$("vaccineName").innerHTML=list.map((v,i)=>`<option value="${escapeHtml(v[0])}">${escapeHtml(v[0])} — ${escapeHtml(v[1])}</option>`).join("")}
+function addVaccine(){let name=category==="custom"?$("customName").value.trim():$("vaccineName").value;if(!name){alert("Укажи название прививки.");return}if(!$("vaccineDate").value){alert("Выбери дату.");return}data.records.push({id:Date.now().toString(),name,category,date:$("vaccineDate").value,status:$("vaccineStatus").value,dose:$("vaccineDose").value.trim(),remind:Number($("remindDays").value),note:$("vaccineNote").value.trim()});persist();$("vaccineNote").value="";$("vaccineDose").value="";showView("calendar")}
+function setFilter(f){filter=f;["all","planned","done"].forEach(x=>{let el=$("filter"+x[0].toUpperCase()+x.slice(1));if(el)el.classList.toggle("active",x===f)});render()}
+function vaccineCard(r){let done=r.status==="done";return `<div class="vaccine"><div class="vicon">${done?"✓":"💉"}</div><div class="vmain"><strong>${escapeHtml(r.name)}</strong><small>${formatDate(r.date)}${r.dose?" · "+escapeHtml(r.dose):""}</small>${r.note?`<small>${escapeHtml(r.note)}</small>`:""}<div class="vactions"><button onclick="toggleDone('${r.id}')">${done?"Вернуть в план":"Отметить сделанной"}</button><button class="danger" onclick="deleteRecord('${r.id}')">Удалить</button></div></div><span class="pill ${done?"done":""}">${done?"Сделана":"План"}</span></div>`}
+function render(){let records=[...data.records].sort((a,b)=>a.date.localeCompare(b.date));$("childName").value=data.profile.name||"";$("birthDate").value=data.profile.birth||"";$("profileDisplayName").textContent=data.profile.name||"Мой малыш";$("childAge").textContent=ageLabel(data.profile.birth||"");$("profilePhoto").src=data.profile.photo||"assets/icon-192.png";$("countDone").textContent=records.filter(x=>x.status==="done").length;$("countPlanned").textContent=records.filter(x=>x.status==="planned"&&x.date>=today()).length;$("countOverdue").textContent=records.filter(x=>x.status==="planned"&&x.date<today()).length;
+let upcoming=records.filter(x=>x.status==="planned").slice(0,4);$("upcomingList").innerHTML=upcoming.length?upcoming.map(vaccineCard).join(""):'<div class="empty">Пока нет запланированных прививок.<br>Добавь событие, чтобы оно появилось здесь.</div>';
+let shown=records.filter(x=>filter==="all"||x.status===filter);$("allVaccines").innerHTML=shown.length?shown.map(vaccineCard).join(""):'<div class="empty">Записей пока нет</div>'}
+function toggleDone(id){let r=data.records.find(x=>x.id===id);if(r)r.status=r.status==="done"?"planned":"done";persist()}
+function deleteRecord(id){if(confirm("Удалить эту запись?")){data.records=data.records.filter(x=>x.id!==id);persist()}}
+function showView(name){document.querySelectorAll(".view").forEach(x=>x.classList.remove("active"));const target=$(name+"View");if(target)target.classList.add("active");document.querySelectorAll(".navbtn").forEach(x=>x.classList.toggle("active",x.dataset.view===name));window.scrollTo(0,0);render();renderExtras()}
+function today(){let d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`}
+function formatDate(s){if(!s)return "";let [y,m,d]=s.split("-");return `${d}.${m}.${y}`}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function exportCalendar(){let records=data.records.filter(x=>x.status==="planned");if(!records.length){alert("Нет запланированных прививок для экспорта.");return}const stamp=d=>d.replace(/-/g,"");let lines=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Moy Kalendar Privivok//RU","CALSCALE:GREGORIAN"];records.forEach(r=>{let end=new Date(r.date+"T12:00:00");end.setDate(end.getDate()+1);let e=`${end.getFullYear()}${String(end.getMonth()+1).padStart(2,"0")}${String(end.getDate()).padStart(2,"0")}`;lines.push("BEGIN:VEVENT",`UID:${r.id}@moy-kalendar-privivok`,`DTSTAMP:${new Date().toISOString().replace(/[-:]/g,"").replace(/\.\d{3}/,"")}`,`DTSTART;VALUE=DATE:${stamp(r.date)}`,`DTEND;VALUE=DATE:${e}`,`SUMMARY:${r.name.replace(/[,;]/g," ")}`,`DESCRIPTION:${(r.note||"Прививка ребёнка").replace(/[,;]/g," ")}`,"BEGIN:VALARM",`TRIGGER:-P${r.remind||0}D`,"ACTION:DISPLAY","DESCRIPTION:Напоминание о прививке","END:VALARM","END:VEVENT")});lines.push("END:VCALENDAR");let blob=new Blob([lines.join("\r\n")],{type:"text/calendar;charset=utf-8"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="privivki.ics";a.click();URL.revokeObjectURL(url)}
+async function enableNotifications(){if(!("Notification"in window)){$("notifyStatus").textContent="Этот браузер не поддерживает уведомления.";return}let p=await Notification.requestPermission();$("notifyStatus").textContent=p==="granted"?"Разрешение получено. В этой версии уведомления не планируются надёжно в фоне.":"Разрешение не предоставлено."}
+function backupData(){let blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="privivki-backup.json";a.click();URL.revokeObjectURL(url)}
+function restoreData(e){let file=e.target.files[0];if(!file)return;let reader=new FileReader();reader.onload=()=>{try{let obj=JSON.parse(reader.result);if(!obj.profile||!Array.isArray(obj.records))throw Error();data=obj;persist();alert("Резервная копия восстановлена.")}catch{alert("Не удалось прочитать файл резервной копии.")}};reader.readAsText(file)}
+
+const vaccineInfo=[
+["Гепатит B","Защита от инфекции, поражающей печень. Схема зависит от возраста и факторов риска."],
+["БЦЖ","Вакцина для профилактики тяжёлых форм туберкулёза у детей."],
+["Пентаксим","Комбинированная вакцина против дифтерии, столбняка, коклюша, полиомиелита и Hib-инфекции; состав и показания сверяют по инструкции."],
+["Пневмококковая инфекция","Профилактика заболеваний, вызванных пневмококком."],
+["Корь, краснуха, паротит","Комбинированная вакцина против трёх вирусных инфекций."],
+["Грипп","Сезонная вакцинация; состав вакцины обновляется."],
+["Ротавирусная инфекция","Профилактика тяжёлого ротавирусного гастроэнтерита; существуют возрастные ограничения."],
+["Менингококковая инфекция","Защита от отдельных серогрупп менингококка в зависимости от вакцины."],
+["Ветряная оспа","Профилактика ветряной оспы; показания зависят от возраста и анамнеза."],
+["Гепатит A","Профилактика вирусного гепатита A."],
+["Вирус папилломы человека (ВПЧ)","Профилактика инфекций ВПЧ и связанных с ними заболеваний."]
+];
+function addHealth(){data.health.push({id:Date.now(),date:$("healthDate").value||today(),temp:$("healthTemp").value,symptom:$("healthSymptom").value,note:$("healthNote").value});$("healthNote").value="";$("healthTemp").value="";persist();alert("Наблюдение сохранено.")}
+function renderExtras(){
+ if($("healthDate")&&!$("healthDate").value)$("healthDate").value=today();
+ if($("healthList"))$("healthList").innerHTML=data.health.length?[...data.health].sort((a,b)=>b.date.localeCompare(a.date)).map(h=>`<div class="vaccine"><div class="vicon">♡</div><div class="vmain"><strong>${escapeHtml(h.symptom)}</strong><small>${formatDate(h.date)}${h.temp?" · "+escapeHtml(h.temp)+" °C":""}</small>${h.note?`<small>${escapeHtml(h.note)}</small>`:""}</div><button class="vactions" onclick="deleteHealth(${h.id})">Удалить</button></div>`).join(""):'<div class="empty">Записей пока нет</div>';
+ if($("docRecord"))$("docRecord").innerHTML=data.records.map(r=>`<option value="${r.id}">${escapeHtml(r.name)} — ${formatDate(r.date)}</option>`).join("");
+ if($("documentsList"))$("documentsList").innerHTML=data.documents.map(d=>`<div class="vaccine"><div class="vicon">📎</div><div class="vmain"><strong>${escapeHtml(d.name)}</strong><small>${escapeHtml(d.fileName)}</small></div><button onclick="deleteDocument(${d.id})">Удалить</button></div>`).join("");
+ if($("childPicker"))$("childPicker").innerHTML=`<option value="main">${escapeHtml(data.profile.name||"Основной профиль")}</option>`+data.children.map(c=>`<option value="${c.id}">${escapeHtml(c.name)}</option>`).join("");
+ renderReference();
+}
+function deleteHealth(id){data.health=data.health.filter(h=>h.id!==id);persist()}
+function saveDocument(){const f=$("docFile").files[0],r=data.records.find(x=>x.id===$("docRecord").value);if(!f||!r){alert("Выбери прививку и файл.");return}if(f.size>5*1024*1024){alert("Файл должен быть не больше 5 МБ.");return}const reader=new FileReader();reader.onload=()=>{data.documents.push({id:Date.now(),recordId:r.id,name:r.name,fileName:f.name,data:reader.result});persist();$("docFile").value="";alert("Документ прикреплён к записи.")};reader.readAsDataURL(f)}
+function deleteDocument(id){data.documents=data.documents.filter(d=>d.id!==id);persist()}
+function renderReference(){if(!$("referenceList"))return;let q=($("refSearch")?.value||"").toLowerCase();let items=vaccineInfo.filter(v=>v.join(" ").toLowerCase().includes(q));$("referenceList").innerHTML=items.map(v=>`<div class="vaccine"><div class="vicon">✚</div><div class="vmain"><strong>${escapeHtml(v[0])}</strong><small>${escapeHtml(v[1])}</small></div></div>`).join("")||'<div class="empty">Ничего не найдено</div>'}
+function printReport(){let w=window.open("","_blank");if(!w){alert("Разреши открытие окна печати для создания PDF.");return}let rows=data.records.map(r=>`<tr><td>${escapeHtml(r.name)}</td><td>${formatDate(r.date)}</td><td>${escapeHtml(r.dose||"—")}</td><td>${r.status==="done"?"Сделана":"Запланирована"}</td></tr>`).join("");w.document.write(`<!doctype html><html lang="ru"><meta charset="utf-8"><title>Прививки — ${escapeHtml(data.profile.name||"ребёнок")}</title><style>body{font:14px Arial;padding:30px;color:#26372e}h1{color:#447b68}table{border-collapse:collapse;width:100%}td,th{border:1px solid #ccd6ce;padding:8px;text-align:left}small{color:#66766b}</style><h1>Календарь прививок</h1><p><b>Ребёнок:</b> ${escapeHtml(data.profile.name||"не указано")}<br><b>Дата рождения:</b> ${formatDate(data.profile.birth)||"не указана"}<br><b>Дата отчёта:</b> ${formatDate(today())}</p><table><thead><tr><th>Прививка</th><th>Дата</th><th>Доза</th><th>Статус</th></tr></thead><tbody>${rows}</tbody></table><p><small>Сверьте медицинские сведения с документами и педиатром.</small></p><script>window.onload=()=>window.print()<\/script></html>`);w.document.close()}
+function addChild(){let name=$("newChildName").value.trim(),birth=$("newChildBirth").value;if(!name||!birth){alert("Укажи имя и дату рождения ребёнка.");return}data.children.push({id:"child-"+Date.now(),name,birth,photo:"",records:[]});$("newChildName").value="";$("newChildBirth").value="";persist();alert("Профиль добавлен. Для полной изоляции данных отдельных детей в следующей версии требуется отдельное хранение их записей.")}
+function switchChild(id){if(id!=="main"){const c=data.children.find(x=>x.id===id);if(c)alert("Выбран профиль "+c.name+". В текущем прототипе переключение профилей отображается, но независимые календари для дополнительных профилей ещё требуют завершения.");}}
+function savePin(){let pin=$("appPin").value.trim();if(pin&&!/^\d{4,8}$/.test(pin)){alert("PIN должен содержать от 4 до 8 цифр.");return}data.pin=pin;persist();$("pinStatus").textContent=pin?"PIN-настройка сохранена на этом устройстве. Это не шифрование данных.":"PIN отключён."}
+
+$("todayLabel").textContent=new Date().toLocaleDateString("ru-RU",{day:"numeric",month:"long"});$("vaccineDate").value=today();fillOptions();render();renderExtras();
+if("serviceWorker"in navigator && location.protocol.startsWith("http"))navigator.serviceWorker.register("./sw.js").catch(()=>{});
+</script>
+</body></html>
