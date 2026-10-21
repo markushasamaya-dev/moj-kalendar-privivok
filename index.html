@@ -24,7 +24,32 @@ header{padding:22px 0 12px;display:flex;justify-content:space-between;align-item
 nav{position:fixed;bottom:0;left:0;right:0;background:#fffffff0;backdrop-filter:blur(18px);border-top:1px solid var(--line);padding:9px 10px calc(9px + env(safe-area-inset-bottom));display:flex;justify-content:center;z-index:5}.navinner{display:flex;max-width:600px;width:100%;justify-content:space-around}.navbtn{border:0;background:transparent;color:#829087;font-size:11px;display:flex;align-items:center;flex-direction:column;gap:3px;padding:5px 12px}.navbtn b{font-size:20px;font-weight:500}.navbtn.active{color:var(--green);font-weight:800}
 .view{display:none}.view.active{display:block}.profile-row{display:flex;align-items:center;gap:14px;margin-bottom:15px}.profile-photo{width:82px;height:82px;border-radius:24px;object-fit:cover;background:#e4f1e9;border:2px solid #e4f1e9}.profile-placeholder{width:82px;height:82px;border-radius:24px;background:#e4f1e9;display:grid;place-items:center;font-size:32px;flex-shrink:0}.photo-actions{display:flex;flex-direction:column;gap:7px}.topline{display:flex;align-items:center;justify-content:space-between;gap:10px}.topline h2{margin:0;font-size:21px}.danger{color:#a34e45!important}
 @media(max-width:440px){.hero{grid-template-columns:1fr .8fr}.hero-copy{padding-left:16px}.hero h1{font-size:22px}.hero p{font-size:12px}.stats{gap:7px}.stat{padding:12px 9px}.stat strong{font-size:21px}.grid2{grid-template-columns:1fr 1fr}}
-</style>
+
+/* Нежный стиль приложения */
+body {
+  background: #f0f7ff;
+  color: #34465a;
+}
+
+button {
+  border-radius: 16px;
+}
+
+input, select, textarea {
+  border-radius: 12px;
+  border: 1px solid #d7e7f7;
+  background: #ffffff;
+  color: #34465a;
+}
+
+.card, .section, .panel {
+  border-radius: 22px;
+  border-color: #dceafa;
+}
+
+header {
+  color: #34465a;
+}</style>
 </head>
 <body>
 <div class="wrap">
