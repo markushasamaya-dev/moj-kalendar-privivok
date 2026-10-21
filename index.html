@@ -49,7 +49,34 @@ input, select, textarea {
 
 header {
   color: #34465a;
-}</style>
+/* Карточки в пастельном стиле */
+.card,
+.section,
+.panel,
+.child-card,
+.vaccine-card,
+.stat-card {
+  background: #ffffff;
+  border: 1px solid #e1edfa;
+  border-radius: 22px;
+  box-shadow: 0 5px 18px rgba(83, 132, 180, 0.09);
+  padding: 16px;
+}
+
+/* Мягкие голубые кнопки */
+button {
+  background: #dceeff;
+  color: #315574;
+  border: 1px solid #c9e2fa;
+  border-radius: 16px;
+  padding: 10px 16px;
+  font-weight: 600;
+}
+
+/* Эффект нажатия */
+button:active {
+  transform: scale(0.98);
+}}</style>
 </head>
 <body>
   <div id="welcome-banner" style="margin:16px auto; max-width:900px; overflow:hidden; border-radius:24px; background:#e6f3ff; box-shadow:0 4px 16px rgba(73,120,170,.12);">
@@ -73,7 +100,7 @@ header {
 </div>
 <div class="stats"><div class="stat"><strong id="countDone">0</strong><span>Сделано</span></div><div class="stat"><strong id="countPlanned">0</strong><span>Запланировано</span></div><div class="stat"><strong id="countOverdue">0</strong><span>Нужно проверить</span></div></div>
 <div class="section-head"><h2>Ближайшие события</h2><button class="btn secondary" onclick="showView('add')">＋ Добавить</button></div>
-<div class="panel" id="upcomingList"></div>
+<div class="panel" id="upcomingList"></div>г
 <div class="notice">Сроки в приложении — ориентир для планирования, а не медицинское назначение. Индивидуальную схему и догоняющую вакцинацию согласуйте с педиатром.</div>
 </section>
 
