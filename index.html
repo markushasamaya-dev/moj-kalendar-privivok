@@ -87,10 +87,8 @@ button:active {
   <div class="wrap">
 <header><div class="brand">ЗАБОТА О ЗДОРОВЬЕ<span>Мой календарь прививок</span></div><div class="avatar">
 <span style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:10px;background:#dceeff;color:#4779a8;font-size:18px;">♡</span></div></header>
-<section id="homeView" class="view active">
-<div class="section-head"><h2>Обзор</h2><span class="small" id="todayLabel"></span></div>
-<div class="panel">
-<section id="addView" class="view">
+<section id="homeView" class="view active"> <div class="section-head"><h2>Обзор</h2><span class="small" id="todayLabel"></span></div> <div class="panel"> <div class="profile-row"> <img id="profilePhoto" class="profile-photo" src="avatar-malysh.png.png" alt="Фото малыша"> <div style="flex:1;min-width:0"> <h2 id="profileDisplayName" style="margin:0 0 4px">Мой малыш</h2> <div id="childAge" class="small">Добавь дату рождения</div> </div> </div> <div class="field"> <label>Имя ребёнка</label> <input id="childName" placeholder="Имя ребёнка"> </div> <div class="field"> <label>Дата рождения</label> <input id="birthDate" type="date"> </div> <button class="btn full" onclick="saveProfile()">Сохранить профиль</button> </div> <div class="stats"> <div class="stat"><strong id="countDone">0</strong><span>Сделано</span></div> <div class="stat"><strong id="countPlanned">0</strong><span>В плане</span></div> <div class="stat"><strong id="countOverdue">0</strong><span>Просрочено</span></div> </div> <div class="section-head"> <h2>Ближайшие прививки</h2> <button class="btn secondary" onclick="showView('add')">＋ Добавить</button> </div> <div class="panel"> <div id="upcomingList"></div> </div> </section> <section id="addView" class="view">
+
 <div class="section-head"><h2>Добавить прививку</h2></div>
 <div class="panel">
 <div class="field"><label>Категория</label><div class="chips"><button class="chip active" id="mandatoryChip" onclick="setCategory('mandatory')">Национальный календарь</button><button class="chip" id="extraChip" onclick="setCategory('extra')">Дополнительные</button><button class="chip" id="customChip" onclick="setCategory('custom')">Своя запись</button></div></div>
