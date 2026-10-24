@@ -90,21 +90,6 @@ button:active {
 <section id="homeView" class="view active">
 <div class="section-head"><h2>Обзор</h2><span class="small" id="todayLabel"></span></div>
 <div class="panel">
-<div class="profile-row">
-<img id="profilePhoto" class="profile-photo" src="./avatar-new.png.png" alt="Фото ребёнка" width="96" height="96" style="width:96px!important;height:96px!important;min-width:96px;max-width:96px;min-height:96px;max-height:96px;object-fit:cover;border-radius:50%;flex-shrink:0;">
-<div class="photo-actions"><strong id="profileDisplayName">Мой малыш</strong><span class="small" id="childAge">Добавь дату рождения</span><button class="btn secondary" type="button" onclick="document.getElementById('photoFile').click()">
-<span style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:10px;background:#dceeff;color:#4779a8;font-size:18px;">♡</span> Выбрать фото</button><button class="btn ghost" type="button" onclick="removePhoto()">Убрать фото</button><input id="photoFile" type="file" accept="image/*" style="display:none" onchange="loadPhoto(event)"></div>
-</div>
-<div class="field"><label>Имя ребёнка</label><input id="childName" placeholder="Например, Миша" oninput="updateProfilePreview()"></div>
-<div class="field"><label>Дата рождения</label><input id="birthDate" type="date" onchange="updateProfilePreview()"></div>
-<button class="btn full" onclick="saveProfile()">Сохранить профиль</button>
-</div>
-<div class="stats"><div class="stat"><strong id="countDone">0</strong><span>Сделано</span></div><div class="stat"><strong id="countPlanned">0</strong><span>Запланировано</span></div><div class="stat"><strong id="countOverdue">0</strong><span>Нужно проверить</span></div></div>
-<div class="section-head"><h2>Ближайшие события</h2><button class="btn secondary" onclick="showView('add')">＋ Добавить</button></div>
-<div class="panel" id="upcomingList"></div>
-<div class="notice">Сроки в приложении — ориентир для планирования, а не медицинское назначение. Индивидуальную схему и догоняющую вакцинацию согласуйте с педиатром.</div>
-</section>
-
 <section id="addView" class="view">
 <div class="section-head"><h2>Добавить прививку</h2></div>
 <div class="panel">
