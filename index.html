@@ -262,7 +262,13 @@ function saveProfile(){data.profile={name:$("childName").value.trim(),birth:$("b
 function updateProfilePreview(){const name=$("childName").value.trim();$("profileDisplayName").textContent=name||"Мой малыш";$("childAge").textContent=ageLabel($("birthDate").value)}
 function ageLabel(birth){if(!birth)return "Добавь дату рождения";const b=new Date(birth+"T12:00:00"),n=new Date();if(b>n)return "Проверь дату рождения";let months=(n.getFullYear()-b.getFullYear())*12+n.getMonth()-b.getMonth();if(n.getDate()<b.getDate())months--;if(months<0)return "Проверь дату рождения";if(months<24)return months+" мес.";let years=Math.floor(months/12),rest=months%12;return years+" г. "+(rest?rest+" мес.":"")}
 function loadPhoto(event){const file=event.target.files&&event.target.files[0];if(!file)return;if(!file.type.startsWith("image/")){alert("Выбери изображение.");return}if(file.size>5*1024*1024){alert("Фото должно быть не больше 5 МБ.");return}const reader=new FileReader();reader.onload=()=>{data.profile.photo=reader.result;$("profilePhoto").src=reader.result;persist()};reader.readAsDataURL(file)}
-function removePhoto(){data.profile.photo="";$("profilePhoto").src="assets/icon-192.png";persist()}
+
+function removePhoto(){
+data.profile.photo="";
+$("profilePhoto").src="avatar-new.png.png";
+$("childPhotoInput").value="";
+persist();
+}
 function setCategory(c){category=c;["mandatory","extra","custom"].forEach(x=>$(x+"Chip").classList.toggle("active",x===c));$("vaccineSelectWrap").style.display=c==="custom"?"none":"block";$("customNameWrap").style.display=c==="custom"?"block":"none";fillOptions()}
 function fillOptions(){let list=category==="extra"?extra:mandatory;$("vaccineName").innerHTML=list.map((v,i)=>`<option value="${escapeHtml(v[0])}">${escapeHtml(v[0])} — ${escapeHtml(v[1])}</option>`).join("")}
 function addVaccine(){let name=category==="custom"?$("customName").value.trim():$("vaccineName").value;if(!name){alert("Укажи название прививки.");return}if(!$("vaccineDate").value){alert("Выбери дату.");return}data.records.push({id:Date.now().toString(),name,category,date:$("vaccineDate").value,status:$("vaccineStatus").value,dose:$("vaccineDose").value.trim(),remind:Number($("remindDays").value),note:$("vaccineNote").value.trim()});persist();$("vaccineNote").value="";$("vaccineDose").value="";showView("calendar")}
