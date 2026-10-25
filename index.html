@@ -330,7 +330,18 @@ persist();alert("Профиль добавлен.");
 }
 
 
-function switchChild(id){if(id==="main"){return}const c=data.children.find(x=>x.id===id);if(c){data.profile.name=c.name;data.profile.birth=c.birth;data.profile.photo=c.photo||"";persist();render();}}
+
+function switchChild(id){
+data.activeChild=id;
+if(id==="main"){
+const main=data.children.find(c=>c.id==="main");
+if(main){data.profile.name=main.name;data.profile.birth=main.birth;data.profile.photo=main.photo||"";}
+}else{
+const c=data.children.find(x=>x.id===id);
+if(c){data.profile.name=c.name;data.profile.birth=c.birth;data.profile.photo=c.photo||"";}
+}
+persist();
+}
 function savePin(){let pin=$("appPin").value.trim();if(pin&&!/^\d{4,8}$/.test(pin)){alert("PIN должен содержать от 4 до 8 цифр.");return}data.pin=pin;persist();$("pinStatus").textContent=pin?"PIN-настройка сохранена на этом устройстве. Это не шифрование данных.":"PIN отключён."}
 
 $("todayLabel").textContent=new Date().toLocaleDateString("ru-RU",{day:"numeric",month:"long"});$("vaccineDate").value=today();fillOptions();render();renderExtras();
