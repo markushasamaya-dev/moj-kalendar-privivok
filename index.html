@@ -344,7 +344,11 @@ persist();
 }
 function savePin(){let pin=$("appPin").value.trim();if(pin&&!/^\d{4,8}$/.test(pin)){alert("PIN должен содержать от 4 до 8 цифр.");return}data.pin=pin;persist();$("pinStatus").textContent=pin?"PIN-настройка сохранена на этом устройстве. Это не шифрование данных.":"PIN отключён."}
 
-$("todayLabel").textContent=new Date().toLocaleDateString("ru-RU",{day:"numeric",month:"long"});$("vaccineDate").value=today();fillOptions();render();renderExtras();
+
+if(data.activeChild&&data.activeChild!=="main"){
+const c=data.children.find(x=>x.id===data.activeChild);
+if(c){data.profile.name=c.name;data.profile.birth=c.birth;data.profile.photo=c.photo||"";}
+}$("todayLabel").textContent=new Date().toLocaleDateString("ru-RU",{day:"numeric",month:"long"});$("vaccineDate").value=today();fillOptions();render();renderExtras();
 if("serviceWorker"in navigator && location.protocol.startsWith("http"))navigator.serviceWorker.register("./sw.js").catch(()=>{});
 </script>
 </body></html>
