@@ -302,7 +302,33 @@ nav .navbtn.active b {
 <div class="panel"><h3 style="margin-top:0">О календаре</h3><p class="small">Перечень обязательных прививок ориентирован на национальный календарь РФ (приказ Минздрава № 1122н с изменениями). Дополнительные прививки не являются обязательной частью национального календаря для всех детей; показания и сроки обсуди с врачом.</p><a href="https://minzdrav.gov.ru/opendata/7707778246-natskalendarprofilakprivivok2015/visual/" target="_blank" rel="noopener">Официальный ресурс Минздрава РФ ↗</a></div>
 </section>
 </div>
-<nav><div class="navinner"><button class="navbtn active" data-view="home" onclick="showView('home')"><b>⌂</b>Главная</button><button class="navbtn" data-view="add" onclick="showView('add')"><b>＋</b>Добавить</button><button class="navbtn" data-view="calendar" onclick="showView('calendar')"><b>▦</b>Прививки</button><button class="navbtn" data-view="health" onclick="showView('health')"><b>♡</b>Самочувствие</button><button class="navbtn" data-view="settings" onclick="showView('settings')"><b>⚙</b>Ещё</button></div></nav>
+```html
+<nav>
+  <div class="navinner">
+    <button class="navbtn active" data-view="calendar" onclick="showView('calendar')">
+      <img src="./assets/02_kalendar_privivok.png" alt="">
+      Календарь
+    </button>
+    <button class="navbtn" data-view="health" onclick="showView('health')">
+      <img src="./assets/05_zapis_o_privivke.png" alt="">
+      Дневник
+    </button>
+    <button class="navbtn" data-view="children" onclick="showView('children')">
+      <img src="./assets/04_profil_rebenka.png" alt="">
+      Профиль
+    </button>
+    <button class="navbtn" data-view="settings" onclick="showView('settings')">
+      <img src="./assets/03_spravochnik.png" alt="">
+      Справочник
+    </button>
+    <button class="navbtn" data-view="settings" onclick="showView('settings')">
+      <img src="./assets/05_nastroyki.png" alt="">
+      Настройки
+    </button>
+  </div>
+</nav>
+```
+
 <script>
 const mandatory=[
 ["Гепатит B — 1-я вакцинация","Первые 24 часа жизни"],["Туберкулёз (БЦЖ)","3–7-й день жизни"],["Гепатит B — 2-я вакцинация","1 месяц"],["Пневмококковая инфекция — 1-я вакцинация","2 месяца"],["Гепатит B — 3-я вакцинация","2 месяца для групп риска"],["Дифтерия, коклюш, столбняк — 1-я вакцинация","3 месяца"],["Полиомиелит — 1-я вакцинация","3 месяца"],["Гемофильная инфекция — 1-я вакцинация","3 месяца для групп риска"],["Дифтерия, коклюш, столбняк — 2-я вакцинация","4,5 месяца"],["Полиомиелит — 2-я вакцинация","4,5 месяца"],["Гемофильная инфекция — 2-я вакцинация","4,5 месяца для групп риска"],["Пневмококковая инфекция — 2-я вакцинация","4,5 месяца"],["Дифтерия, коклюш, столбняк — 3-я вакцинация","6 месяцев"],["Полиомиелит — 3-я вакцинация","6 месяцев"],["Гепатит B — 3-я вакцинация","6 месяцев"],["Гемофильная инфекция — 3-я вакцинация","6 месяцев для групп риска"],["Корь, краснуха, эпидемический паротит","12 месяцев"],["Пневмококковая инфекция — ревакцинация","15 месяцев"],["Дифтерия, коклюш, столбняк — ревакцинация","18 месяцев"],["Полиомиелит — ревакцинация","18 месяцев"],["Гемофильная инфекция — ревакцинация","18 месяцев для групп риска"],["Полиомиелит — ревакцинация","20 месяцев"],["Дифтерия, столбняк — ревакцинация","6–7 лет"],["Туберкулёз — ревакцинация (по показаниям)","6–7 лет"],["Полиомиелит — ревакцинация","6–7 лет"],["Корь, краснуха, эпидемический паротит — ревакцинация","6 лет"],["Дифтерия, столбняк — ревакцинация","14 лет"]
