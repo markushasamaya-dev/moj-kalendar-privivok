@@ -176,7 +176,32 @@ nav .navbtn.active {
 
 nav .navbtn.active b {
   color: #4d83ad !important;
-}</style>
+}```css
+/* Иллюстрированные иконки нижнего меню */
+nav .navbtn img {
+  display: block;
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+nav .navbtn {
+  gap: 4px;
+  padding: 6px 4px;
+  min-width: 0;
+  flex: 1;
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+nav .navinner {
+  max-width: 600px;
+  width: 100%;
+  gap: 2px;
+}
+```
+</style>
 </head>
 <body>
   
