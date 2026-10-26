@@ -178,13 +178,17 @@ nav .navbtn.active b {
   color: #4d83ad !important;
 }
 /* Иллюстрированные иконки нижнего меню */
+```css
 nav .navbtn img {
   display: block;
-  width: 30px;
-  height: 30px;
-  object-fit: contain;
+  width: 40px !important;
+  height: 40px !important;
+  max-width: 40px !important;
+  max-height: 40px !important;
+  object-fit: contain !important;
   flex-shrink: 0;
 }
+
 
 nav .navbtn {
   gap: 4px;
@@ -235,10 +239,11 @@ nav .navinner {
       <img src="./assets/04_profil_rebenka.png" alt="" style="width:64px;height:64px;object-fit:contain;">
       <span>Добавить<br>ребёнка</span>
     </button>
-    <button class="home-tile" onclick="showView('photos')">
-      <img src="./assets/02_vybrat_foto.png" alt="" style="width:64px;height:64px;object-fit:contain;">
-      <span>Фото</span>
-    </button>
+    ```html
+<button class="home-tile" onclick="showView('settings')">
+  <img src="./assets/03_spravochnik.png" alt="" style="width:64px;height:64px;object-fit:contain;">
+  <span>Справочник<br>прививок</span>
+</button>
   </div>
 
   <div class="profile-edit-fields" style="display:none">
