@@ -38,7 +38,14 @@ nav{position:fixed;bottom:0;left:0;right:0;background:#fffffff0;backdrop-filter:
   font-weight:500;
   line-height:1;
   color:#779fbe;
-}.navbtn.active{color:var(--green);font-weight:800}
+}.navbtn.active{
+  color:#4d83ad;
+  font-weight:700;
+  background:#eaf4fb;
+}
+.navbtn.active b{
+  color:#4d83ad;
+}
 .view{display:none}.view.active{display:block}.profile-row{display:flex;align-items:center;gap:14px;margin-bottom:15px}
 .profile-photo{width:96px!important;height:96px!important;min-width:96px;max-width:96px;min-height:96px;max-height:96px;border-radius:50%;object-fit:cover;display:block;flex-shrink:0}
 @media(max-width:440px){.hero{grid-template-columns:1fr .8fr}.hero-copy{padding-left:16px}.hero h1{font-size:22px}.hero p{font-size:12px}.stats{gap:7px}.stat{padding:12px 9px}.stat strong{font-size:21px}.grid2{grid-template-columns:1fr 1fr}}
