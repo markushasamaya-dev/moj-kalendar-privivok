@@ -329,30 +329,20 @@ nav .navinner {
 <div class="panel"><h3 style="margin-top:0">О календаре</h3><p class="small">Перечень обязательных прививок ориентирован на национальный календарь РФ (приказ Минздрава № 1122н с изменениями). Дополнительные прививки не являются обязательной частью национального календаря для всех детей; показания и сроки обсуди с врачом.</p><a href="https://minzdrav.gov.ru/opendata/7707778246-natskalendarprofilakprivivok2015/visual/" target="_blank" rel="noopener">Официальный ресурс Минздрава РФ ↗</a></div>
 </section>
 </div>
+```html
 <nav>
   <div class="navinner">
-    <button class="navbtn active" data-view="calendar" onclick="showView('calendar')">
+    <button class="navbtn active" data-view="home" onclick="showView('home')">
+      <img src="./assets/01_glavnaya_dom.png" alt="">
+      Домой
+    </button>
+    <button class="navbtn" data-view="calendar" onclick="showView('calendar')">
       <img src="./assets/02_kalendar_privivok.png" alt="">
       Календарь
     </button>
     <button class="navbtn" data-view="health" onclick="showView('health')">
-      <img src="./assets/05_zapis_o_privivke.png" alt="">
-      Дневник
-    </button>
-    <button class="navbtn" data-view="children" onclick="showView('children')">
-      <img src="./assets/04_profil_rebenka.png" alt="">
-      Профиль
-    </button>
-    <button class="navbtn" data-view="reference" onclick="showView('reference')">
-      <img src="./assets/03_spravochnik.png" alt="">
-      Справочник
-    </button>
-    <button class="navbtn" data-view="settings" onclick="showView('settings')">
-      <img src="./assets/05_nastroyki.png" alt="">
-      Настройки
-    </button>
-  </div>
-</nav>
+      <img src="./assets/05_zapis_o_priv
+
 
 <script>
 const mandatory=[
